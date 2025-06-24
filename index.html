@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="feiosa">
+  <meta name="author" content="Lucas">
+  <title>para a menina mais fedida</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: #0c1b29;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      user-select: none;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    body::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge */
+    }
+
+     .nuvem {
+      position: absolute;
+      width: 300px;
+      opacity: 0.08;
+      z-index: 1;
+      animation: moverNuvem 30s linear infinite;
+      pointer-events: none;
+    }
+
+    .nuvem1 {
+      top: 15%;
+      left: -350px;
+      animation-delay: 0s;
+    }
+
+    .nuvem2 {
+      top: 50%;
+      left: -400px;
+      animation-delay: 20s;
+    }
+
+    .nuvem3 {
+      top: 75%;
+      left: -300px;
+      animation-delay: 40s;
+    }
+
+    @keyframes moverNuvem {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(130vw); }
+    }
+    .stars, .stars2, .stars3, .stars4, .stars5, .stars6, .stars7, .stars8, .stars9 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20px 30px, rgba(255, 255, 255, 0.3), transparent);
+      pointer-events: none;
+      z-index: -1;
+      animation: moveStars 80s linear infinite;
+      background-size: 150px 150px;
+      opacity: 0.3;
+    }
+
+    .stars2 {
+      animation: moveStarsReverse 120s linear infinite;
+      opacity: 0.5;
+    }
+
+    .stars3 {
+      animation: moveStars 160s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    @keyframes moveStarsReverse {
+      0% { background-position: 0 0; }
+      100% { background-position: -1000px -1000px; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+
+    .image-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      margin: 30px auto;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-container:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+    }
+
+    .typed-text {
+      font-size: 1.4rem;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 0 auto;
+      min-height: 50px;
+      white-space: normal;
+      overflow: visible;
+    word-break: break-word;
+      text-align: center;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 48px;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #aaddff, 0 0 30px #88bbff;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .star:hover {
+      transform: scale(1.6);
+      text-shadow:
+        0 0 15px #fff,
+        0 0 30px #aaffff,
+        0 0 45px #88bbff,
+        0 0 60px #55aaff;
+    }
+
+    .star-text-popup {
+      position: fixed;
+      color: #f5fcff;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      max-width: 220px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      transform: translate(-50%, -110%);
+      z-index: 1000;
+      text-align: center;
+      user-select: text;
+      white-space: normal;
+    }
+
+    .star-text-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spark {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #aaffff, transparent);
+      pointer-events: none;
+      opacity: 0.7;
+      animation: sparkle 0.8s linear forwards;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    .final-message {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #aaddff;
+      text-shadow: 0 0 10px #88bbff;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .final-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  <div class="stars4"></div>
+  <div class="stars5"></div>
+  <div class="stars6"></div>
+  <div class="stars7"></div>
+  <div class="stars8"></div>
+  <div class="stars9"></div>
+
+  <img src="nuvem.png" class="nuvem nuvem1" />
+  <img src="nuvem.png" class="nuvem nuvem2" />
+  <img src="nuvem.png" class="nuvem nuvem3" />
+
+
+  <div class="container">
+    <h1>:)</h1>
+    <div class="image-container" title="Clique na estrela para ver mensagens secretas">
+      <img src="506929599_1413822683141877_4422375036250308744_n.jpg" alt="Imagem especial" />
+    </div>
+    <div class="typed-text" id="typed-text"></div>
+    <div class="final-message" id="final-message">💖 Você é minha estrela para sempre 💖</div>
+  </div>
+
+  <div class="star" style="top: 20%; left: 10%;" data-msg="O brilho do seu olhar ilumina até minhas noites mais escuras.">★</div>
+  <div class="star" style="top: 50%; left: 25%;" data-msg="Cada momento ao seu lado é um universo infinito de felicidade.">★</div>
+  <div class="star" style="top: 70%; left: 70%;" data-msg="Te amo além das estrelas, até o infinito e além!">★</div>
+  <div class="star" style="top: 80%; left: 85%;" data-msg="Minha vida ganhou mais brilho desde que você chegou.">★</div>
+  <div class="star" style="top: 15%; left: 70%;" data-msg="Com você, cada noite se transforma em magia e luz.">★</div>
+  <div class="star" style="top: 25%; left: 80%;" data-msg="Nosso amor é infinito como o céu estrelado que nos cobre.">★</div>
+  <div class="star" style="top: 60%; left: 15%;" data-msg="Estar contigo é como flutuar entre constelações de sonhos.">★</div>
+  <div class="star" style="top: 40%; left: 85%;" data-msg="EU TE ALMO PAÇOQUINHA.">★</div>
+  <div class="star" style="top: 75%; left: 40%;" data-msg="Nada brilha mais forte do que você no meu coração.">★</div>
+
+  <div id="star-text-popup" class="star-text-popup"></div>
+
+  <script>
+    const typedText = document.getElementById('typed-text');
+    const messages = [
+      "Você me deu mil motivos para sorrir.",
+      "Agora quero te dar mil motivos para ser feliz.",
+      "porque para mim você é o começo para o qual não quero encontrar um fim."
+    ];
+    let messageIndex = 0;
+    let charIndex = 0;
+
+    function typeMessage() {
+      if (charIndex < messages[messageIndex].length) {
+        typedText.textContent += messages[messageIndex][charIndex];
+        charIndex++;
+        setTimeout(typeMessage, 100);
+      } else {
+        setTimeout(() => {
+          messageIndex = (messageIndex + 1) % messages.length;
+          charIndex = 0;
+          typedText.textContent = "";
+          typeMessage();
+        }, 2000);
+      }
+    }
+    typeMessage();
+
+    const starTextPopup = document.getElementById('star-text-popup');
+    let popupTimeout;
+
+    document.querySelectorAll('.star').forEach(star => {
+      star.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const msg = star.getAttribute('data-msg');
+        const rect = star.getBoundingClientRect();
+        starTextPopup.style.left = `${rect.left + rect.width / 2}px`;
+        starTextPopup.style.top = `${rect.top}px`;
+        starTextPopup.textContent = msg;
+        starTextPopup.classList.add('show');
+        clearTimeout(popupTimeout);
+        popupTimeout = setTimeout(() => {
+          starTextPopup.classList.remove('show');
+        }, 3000);
+      });
+    });
+
+    document.addEventListener('click', () => {
+      starTextPopup.classList.remove('show');
+      clearTimeout(popupTimeout);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      const spark = document.createElement('div');
+      spark.classList.add('spark');
+      document.body.appendChild(spark);
+      spark.style.left = `${e.pageX}px`;
+      spark.style.top = `${e.pageY}px`;
+      setTimeout(() => spark.remove(), 700);
+    });
+
+    setTimeout(() => {
+      const finalMessage = document.getElementById('final-message');
+      finalMessage.classList.add('show');
+    }, 5000);
+  </script>
+</body>
+</html>
